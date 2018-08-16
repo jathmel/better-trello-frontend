@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Register from './components/userComponents/Register'
 import Login from './components/userComponents/Login'
+import Profile from './components/userComponents/Profile'
 import ProjectList from './components/projectComponents/ProjectList'
 import TaskList from './components/projectComponents/TaskList'
 import { connect } from 'react-redux'
@@ -11,9 +12,9 @@ class App extends Component {
   render() {
     console.log('render app', this.props.loggedIn);
     return (
-      <div className="App">
+      <div className="container">
       { this.props.loggedIn ?
-        <ProjectList />
+        <Profile />
         :
         <div><Login/>
         <Register/> </div>
