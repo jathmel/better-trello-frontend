@@ -1,6 +1,9 @@
 
 import { getProjects, getTeamMember } from '../adapters/Adapters'
 
+
+export * from './alertActions'
+export * from './userActions'
 export const allProjects = () => {
     return (dispatch) => {getProjects().then(data => {
       // console.log(data);
