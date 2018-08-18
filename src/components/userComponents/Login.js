@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from  'react-redux'
 import { getTeamMember } from '../../adapters/Adapters'
+import { Container, Row, Col, Input, Button, Fa, Card, CardBody, ModalFooter } from 'mdbreact';
+import '../../stylesheets/form.css'
+import { withRouter } from 'react-router-dom'
+
+
 
 
 class Login extends Component {
@@ -10,6 +15,7 @@ class Login extends Component {
   }
 
   handleChange = event => {
+
     console.log(event.target);
     this.setState({
       [event.target.name]: event.target.value
@@ -27,21 +33,38 @@ class Login extends Component {
             currentMember: data
           }
       })
-     })
+    }, ()=> {localStorage.setItem('token', this.props.currentMember.id)})
+     this.props.history.push('/profile')
   }
 
   render(){
     return(
-      <div>
-        <form onSubmit={ (event)=> this.handleSubmit(event) }>
-          <label>email</label>
-          <input type='email' name='email' onChange={ (event) => this.handleChange(event) } value={this.state.email } />
-          <label>password</label>
-          <input type='password' name='password' onChange={ (event) => this.handleChange(event) } value={this.state.password } />
-          <input type='submit' value='Login'/>
-        </form>
-      </div>
-    )
+      <Container>
+              <section className="form-dark">
+                <Row>
+                  <Col md="5">
+                    <Card className="card-image" style={{backgroundImage: 'url(https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg)', width: '28rem'}}>
+                      <div className="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                        <div className="text-center">
+                          <h3 className="green-text mb-5 mt-4 font-weight-bold"><strong>LOGIN</strong></h3>
+                        </div>
+                        <Input label="Your email" group type="text" name='email' onChange={ (event) => this.handleChange(event) } value={this.state.email } validate/>
+                        <Input label="Your password" group type="password" name='password' onChange={ (event) => this.handleChange(event) } value={this.state.password } validate/>
+                        <Row className="d-flex align-items-center mb-4">
+                          <div className="text-center mb-3 col-md-12">
+                            <Button color="success" rounded type="button" className="btn-block z-depth-1" onClick={(event)=>this.handleSubmit(event)}>Login</Button>
+                          </div>
+                        </Row>
+                        <Col md="12">
+                          <p className="font-small white-text d-flex justify-content-end">Dont have an account? <a href="#" className="green-text ml-1 font-weight-bold"> Register</a></p>
+                        </Col>
+                      </div>
+                    </Card>
+                  </Col>
+                </Row>
+              </section>
+            </Container>
+          )
   }
 
 }
@@ -50,4 +73,4 @@ class Login extends Component {
 //
 //   }
 // }
-export default connect()(Login);
+export default withRouter(connect()(Login));
