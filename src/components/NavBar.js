@@ -32,6 +32,7 @@ class NavBar extends Component {
                             </div>
                         </li>
                     </ul>
+                    <Dropdown>
                     <ul className="navbar-nav ml-auto nav-flex-icons">
                         <li className="nav-item">
                             <a className="nav-link waves-effect waves-light">1 <i className="fa fa-envelope"></i></a>
@@ -45,6 +46,7 @@ class NavBar extends Component {
                             </div>
                         </li>
                     </ul>
+                    </Dropdown>
                 </div>
             </Navbar>
         // </section>
