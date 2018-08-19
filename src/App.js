@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
@@ -8,7 +8,9 @@ import Register from './components/userComponents/Register'
 import Login from './components/userComponents/Login'
 import Profile from './components/userComponents/Profile'
 import ProjectList from './components/projectComponents/ProjectList'
+import ProjectForm from './components/projectComponents/ProjectForm'
 import TaskList from './components/projectComponents/TaskList'
+import TaskForm from './components/projectComponents/TaskForm'
 import NavBar from './components/NavBar.js'
 
 
@@ -32,10 +34,16 @@ class App extends Component {
             return <Profile/>
           }}/>
           <Route path='/projects' render={props => {
-            return <ProjectList/>
+            return (<Fragment>
+            <ProjectForm/>
+            <ProjectList/>
+            </Fragment>)
           }}/>
           <Route path='/tasks' render={props => {
-            return <TaskList/>
+            return (<Fragment>
+              <TaskForm/>
+              <TaskList/>
+            </Fragment>)
           }}/>
           <Route path='/logout' render={props => {
             return <Redirect to='/login'/>

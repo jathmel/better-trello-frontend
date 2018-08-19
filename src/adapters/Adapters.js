@@ -38,3 +38,12 @@ export const addTaskForTeamMember = (task_id, member_id) => {
 export const getProjectTeamMembers = () => {
   return fetch(PROJECT_API_ROOT).then(response => response.json())
 }
+
+export const createProject = (name, description) => {
+  const options = {
+    method: 'POST',
+    headers: HEADERS,
+    body: JSON.stringify({project:{name, description}})
+  }
+  return fetch(PROJECT_API_ROOT + 'create', options).then(response => response.json())
+}
