@@ -36,7 +36,7 @@ import { Button, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbrea
    return {
      selected,
      tasks: selectedProject.tasks,
-     selected: state.selected
+     projectSelected: state.projectSelected
 
    }
  }

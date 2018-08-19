@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
 import Task from './Task'
 
@@ -13,9 +13,15 @@ class TaskList extends Component {
        return <Task key={task.id} task={task}/>})
      return(
 
-       <div>
-        <h1>{this.props.selectedProject.name}</h1>
-        <div>{task}</div>
+       <div className='tasklist'>
+        {this.props.taskSelected ?
+          <h3>The task has been added to your list of tasks</h3>
+          :
+          <Fragment>
+            <h1>{this.props.selectedProject.name}</h1>
+            <div className='tasks'>{task}</div>
+          </Fragment>
+      }
        </div>
      )
    }
@@ -24,7 +30,8 @@ class TaskList extends Component {
 const mapStateToProps = (state) =>{
   return {
     tasks: state.tasks,
-    selectedProject: state.selectedProject
+    selectedProject: state.selectedProject,
+    taskSelected: state.taskSelected
   }
 }
 

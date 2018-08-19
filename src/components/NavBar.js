@@ -1,57 +1,66 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Container, Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
-import '../stylesheets/navbar.css'
-class NavBar extends Component {
-  render(){
-    return(
-      // <section className='mt-5'>
-      <Navbar className="mb-1 navbar navbar-expand-lg navbar-dark purple lighten-1" fixed='top'>
-                <a className="navbar-brand" href="#">Navbar</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-5" aria-controls="navbarSupportedContent-5" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent-5">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link waves-effect waves-light" href="#">Home <span className="sr-only">(current)</span></a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link waves-effect waves-light" href="#">Features</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link waves-effect waves-light" href="#">Pricing</a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown
-                            </a>
-                            <div className="dropdown-menu dropdown-purple" aria-labelledby="navbarDropdownMenuLink-5">
-                                <a className="dropdown-item waves-effect waves-light" href="#">Action</a>
-                                <a className="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                                <a className="dropdown-item waves-effect waves-light" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <Dropdown>
-                    <ul className="navbar-nav ml-auto nav-flex-icons">
-                        <li className="nav-item">
-                            <a className="nav-link waves-effect waves-light">1 <i className="fa fa-envelope"></i></a>
-                        </li>
-                        <li className="nav-item avatar dropdown">
-                            <a className="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" className="img-fluid rounded-circle z-depth-0" alt="avatar image"/></a>
-                            <div className="dropdown-menu dropdown-menu-right dropdown-purple" aria-labelledby="navbarDropdownMenuLink-5">
-                                <a className="dropdown-item waves-effect waves-light" href="#">Action</a>
-                                <a className="dropdown-item waves-effect waves-light" href="#">Another action</a>
-                                <a className="dropdown-item waves-effect waves-light" href="#">Something else here</a>
-                            </div>
-                        </li>
-                    </ul>
-                    </Dropdown>
-                </div>
-            </Navbar>
-        // </section>
-    )
+import React from 'react';
+import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink, Container, Mask, View} from 'mdbreact';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+      this.state = {
+        collapse: false,
+        isWideEnough: false
+      };
+    this.onClick = this.onClick.bind(this);
   }
 
+onClick(){
+    this.setState({
+      collapse: !this.state.collapse
+  });
 }
-export default (NavBar)
+
+render() {
+    return (
+          <div className='navbarContainerDiv'>
+            <header>
+              <Router>
+                <Navbar color="indigo" dark expand="md" scrolling>
+                  <NavbarBrand href="/">
+                      <strong>Navbar</strong>
+                  </NavbarBrand>
+                  { !this.state.isWideEnough && <NavbarToggler onClick = { this.onClick } />}
+              <Collapse isOpen = { this.state.collapse } navbar>
+                <NavbarNav left>
+                  <NavItem active>
+                      <NavLink to="#">Home</NavLink>
+                  </NavItem>
+                  <NavItem>
+                      <NavLink to="#">Link</NavLink>
+                  </NavItem>
+                  <NavItem>
+                      <NavLink to="#">Profile</NavLink>
+                  </NavItem>
+                </NavbarNav>
+              </Collapse>
+            </Navbar>
+          </Router>
+
+          <View src="https://mdbootstrap.com/img/Photos/Others/img%20(50).jpg">
+            <Mask overlay="black-light" style={{flexDirection: 'column'}} className="flex-center  text-white text-center">
+              <h2>This Navbar is fixed</h2>
+              <h5>It will always stay visible on the top, even when you scroll down</h5>
+              <br/>
+              <p>Full page intro with background image will be always displayed in full screen mode, regardless of device </p>
+            </Mask>
+          </View>
+        </header>
+        <main>
+          <Container className="text-center my-5">
+            <p align="justify">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </Container>
+        </main>
+      </div>
+    );
+  }
+}
+
+export default NavBar;

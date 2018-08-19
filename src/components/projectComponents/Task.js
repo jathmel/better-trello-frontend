@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { selectedTask } from '../../actions'
+import { addTaskForTeamMember } from '../../adapters/Adapters'
 import { connect } from 'react-redux'
 import { Button, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbreact'
 
@@ -6,25 +8,29 @@ import { Button, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbrea
 const Task = props => {
 
 const handleClick = (event) => {
-    console.log(event);
+  event
+    console.log(props.task.team_member_project_id);
+    props.selectedTask(props.task)
+    addTaskForTeamMember(props.task.id, 1)
+    // debugger
   }
-    console.log(props.task);
+    console.log(props.selectedTask);
     return(
-      <Card className="card-image" style={{backgroundImage: "url('https://mdbootstrap.com/img/Photos/Horizontal/City//6-col/img%20(47).jpg')"}}>
-       <div className="text-white text-center d-flex align-items-center rgbs-indigo-strong py-5 px-4">
-         <div>
-           <h5 className="orange-text"><Fa icon="desktop"/>Software</h5>
-           <CardTitle tag="h3" className=" orange-text pt-2"><strong>{props.task.title}</strong></CardTitle>
-           <p className='orange-text'>When it comes time to interview, companies are going to be looking for that additional work.
-           That's when I'll ramp up and spend some evenings and even weekends creating personal projects.
-           They might not be the fanciest pieces...they might not be the next Facebook, but they are something that showcases
-            the work that Im capable of doing.</p>
-           <Button color="deep-orange" onClick= {(event) => handleClick(event) }><Fa icon="clone left"/>Tasks</Button>
-         </div>
-       </div>
-      </Card>
+      <Card>
+          <CardImage src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap" top hover overlay="white-slight"/>
+          <CardBody>
+            <CardTitle tag="h5">{props.task.title}</CardTitle>
+            <CardText>{props.task.description}</CardText>
+            <Button color="light-blue" size="md" onClick={(event) => handleClick(event)}>Add Task</Button>
+          </CardBody>
+        </Card>
     )
 
 }
+const mapStateToProps = (state) => {
+  return {
+    selectedTask: state.selectedTask
+  }
+}
 
-export default (Task)
+export default connect(mapStateToProps, { selectedTask })(Task)

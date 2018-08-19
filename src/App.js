@@ -9,39 +9,39 @@ import Login from './components/userComponents/Login'
 import Profile from './components/userComponents/Profile'
 import ProjectList from './components/projectComponents/ProjectList'
 import TaskList from './components/projectComponents/TaskList'
-import NavBar from './components/NavBar'
+import NavBar from './components/NavBar.js'
 
 
 class App extends Component {
   render() {
     console.log('render app', this.props.loggedIn);
     return (
-      <div className="App">
-      <NavBar/>
-      <Switch>
-        <Route exact path='/' render={ props => {
-          return <Redirect to='/login'/>
-        }}/>
-        <Route path='/login' render={props =>{
-          return <Login/>
-        }}/>
-        <Route path='/register' render={props => {
-          return <Register/>
-        }}/>
-        <Route path='/profile' render={props => {
-          return <Profile/>
-        }}/>
-        <Route path='/projects' render={props => {
-          return <ProjectList/>
-        }}/>
-        <Route path='/tasks' render={props => {
-          return <TaskList/>
-        }}/>
-        <Route path='/logout' render={props => {
-          return <Redirect to='/login'/>
-        }}/>
-      </Switch>
-      </div>
+    <div className="App">
+        <NavBar/>
+        <Switch>
+          <Route exact path='/' render={ props => {
+            return <Redirect to='/login'/>
+          }}/>
+          <Route path='/login' render={props =>{
+            return <Login/>
+          }}/>
+          <Route path='/register' render={props => {
+            return <Register/>
+          }}/>
+          <Route path='/profile' render={props => {
+            return <Profile/>
+          }}/>
+          <Route path='/projects' render={props => {
+            return <ProjectList/>
+          }}/>
+          <Route path='/tasks' render={props => {
+            return <TaskList/>
+          }}/>
+          <Route path='/logout' render={props => {
+            return <Redirect to='/login'/>
+          }}/>
+        </Switch>
+    </div>
     );
   }
 }

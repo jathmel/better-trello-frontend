@@ -27,13 +27,14 @@ class Login extends Component {
     event.preventDefault()
     getTeamMember(this.state)
       .then (data => {
+        localStorage.setItem('token', data.id)
         this.props.dispatch({
           type: 'LOGIN',
           payload: {
             currentMember: data
           }
       })
-    }, ()=> {localStorage.setItem('token', this.props.currentMember.id)})
+    })
      this.props.history.push('/profile')
   }
 

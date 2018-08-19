@@ -6,10 +6,11 @@ const initialState = {
   projects:[],
   selectedProject: {},
   tasks: [],
-  selectedTasks: {},
+  selectedTask: {},
   loggedIn: false,
   currentMember: {},
-  selected: false
+  projectSelected: false,
+  taskSelected: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -30,12 +31,16 @@ const rootReducer = (state = initialState, action) => {
       }
       case 'SELECTED_PROJECT':
         return {
-          ...state, selectedProject: action.payload.project, selected: true
+          ...state, selectedProject: action.payload.project, projectSelected: true
         }
       case 'LOAD_TASKS':
       return {
         ...state, tasks: action.payload.tasks
       }
+      case 'SELECTED_TASK':
+        return {
+          ...state, selectedTask: action.payload.task, taskSelected: true
+        }
 
       break;
     default:
