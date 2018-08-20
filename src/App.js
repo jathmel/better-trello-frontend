@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect, withRouter} from 'react-router-dom'
+import { getCurrentMember } from './adapters/Adapters'
 
 import Register from './components/userComponents/Register'
 import Login from './components/userComponents/Login'
@@ -15,14 +16,35 @@ import NavBar from './components/NavBar.js'
 
 
 class App extends Component {
+
+  componentDidMount() {
+      const id = localStorage.getItem('token')
+      if (id){
+        getCurrentMember(id).then(data => {
+        this.props.dispatch({
+          type: 'LOGIN',
+          payload: {
+            currentMember: data
+          }
+        })
+      })
+    }
+  }
+
+  isLoggedIn = () => {
+    const log = localStorage.getItem('token')
+    console.log(log);
+    if (!log ){this.props.history.push('/login')}
+  }
+
   render() {
     console.log('render app', this.props.loggedIn);
     return (
     <div className="App">
-        <NavBar/>
+         <NavBar/>
         <Switch>
           <Route exact path='/' render={ props => {
-            return <Redirect to='/login'/>
+            return <Redirect to='/profile'/>
           }}/>
           <Route path='/login' render={props =>{
             return <Login/>
@@ -31,15 +53,18 @@ class App extends Component {
             return <Register/>
           }}/>
           <Route path='/profile' render={props => {
+            this.isLoggedIn()
             return <Profile/>
           }}/>
           <Route path='/projects' render={props => {
+            this.isLoggedIn()
             return (<Fragment>
             <ProjectForm/>
             <ProjectList/>
             </Fragment>)
           }}/>
           <Route path='/tasks' render={props => {
+            // this.isLoggedIn()
             return (<Fragment>
               <TaskForm/>
               <TaskList/>

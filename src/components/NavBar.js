@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink, Container, Mask, View} from 'mdbreact';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router , Link} from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -31,13 +32,13 @@ render() {
               <Collapse isOpen = { this.state.collapse } navbar>
                 <NavbarNav left>
                   <NavItem active>
-                      <NavLink to="#">Home</NavLink>
+                      <Link to="/login">Home</Link>
                   </NavItem>
                   <NavItem>
-                      <NavLink to="#">Link</NavLink>
+                      <Link to="/logout">Logout</Link>
                   </NavItem>
                   <NavItem>
-                      <NavLink to="#">Profile</NavLink>
+                      <Link to="/profile">Profile</Link>
                   </NavItem>
                 </NavbarNav>
               </Collapse>
@@ -63,4 +64,4 @@ render() {
   }
 }
 
-export default NavBar;
+export default connect()(NavBar);

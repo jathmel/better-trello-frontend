@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { createTeamMember } from '../../adapters/Adapters'
 import { Container, Row, Col, Input, Button, Fa, Card, CardBody, ModalFooter } from 'mdbreact';
 import '../../stylesheets/form.css'
+import { withRouter, Link } from 'react-router-dom'
 
 class Register extends Component {
   state = {
@@ -23,6 +24,7 @@ class Register extends Component {
     createTeamMember(this.state)
     .then(data => {
       console.log(data);
+      localStorage.setItem('token', data.id)
       this.props.dispatch({
       type: 'REGISTER',
       payload: {
@@ -30,7 +32,7 @@ class Register extends Component {
       }
     })}
   )
-
+  this.props.history.push('/profile')
   }
   render(){
     return (
@@ -52,7 +54,7 @@ class Register extends Component {
                           </div>
                         </Row>
                         <Col md="12">
-                          <p className="font-small white-text d-flex justify-content-end">Have an account? <a href="#" className="green-text ml-1 font-weight-bold"> Login</a></p>
+                          <p className="font-small white-text d-flex justify-content-end">Have an account? <Link to='/login' className="green-text ml-1 font-weight-bold"> Login</Link></p>
                         </Col>
                       </div>
                     </Card>
@@ -63,4 +65,4 @@ class Register extends Component {
     )
   }
 }
-export default connect()(Register)
+export default withRouter(connect()(Register))

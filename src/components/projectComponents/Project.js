@@ -1,6 +1,7 @@
 import React from 'react'
 import { selectedProject, projectTasks } from '../../actions'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import '../../stylesheets/project.css'
 import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbreact'
 
@@ -17,7 +18,7 @@ import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardT
      console.log(this.props.project.tasks);
      this.props.selectedProject(this.props.project)
      this.props.projectTasks(this.props.project.tasks)
-
+     this.props.history.push('/tasks')
    }
    // console.log(props.project.name);
    render(){
@@ -55,4 +56,4 @@ import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardT
  //
  // }
 
- export default connect(mapStateToProps, { selectedProject, projectTasks }) (Project)
+ export default withRouter(connect(mapStateToProps, { selectedProject, projectTasks }) (Project))

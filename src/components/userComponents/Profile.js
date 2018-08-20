@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom';
+import {getCurrentMember } from '../../adapters/Adapters'
 class Profile extends Component {
   componentDidMount() {
-    this.props.user
+    const id = localStorage.getItem('token')
+    // this.props.currentMember
+    getCurrentMember(id).then(member => {console.log(member);})
   }
 
 

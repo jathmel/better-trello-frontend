@@ -15,7 +15,11 @@ class TaskList extends Component {
 
        <div className='tasklist'>
         {this.props.taskSelected ?
-          <h3>The task has been added to your list of tasks</h3>
+          <Fragment>
+            <h3>The task has been added to your list of tasks</h3>
+            <h1>{this.props.selectedProject.name}</h1>
+            <div className='tasks'>{task}</div>
+          </Fragment>
           :
           <Fragment>
             <h1>{this.props.selectedProject.name}</h1>

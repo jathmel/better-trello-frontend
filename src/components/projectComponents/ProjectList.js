@@ -16,14 +16,9 @@ class ProjectList extends Component {
       return <Project key={project.id} project={project}/>
     })
     return(
-      <div className='projectList'>
-      {this.props.projectSelected ?
-        <TaskList/>
-        :
-        <div className='project'>{project}</div>
-      }
-      </div>
-
+        <div
+          className='project'>{project}
+        </div>
     )
   }
 }

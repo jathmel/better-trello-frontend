@@ -3,7 +3,7 @@ import { connect } from  'react-redux'
 import { getTeamMember } from '../../adapters/Adapters'
 import { Container, Row, Col, Input, Button, Fa, Card, CardBody, ModalFooter } from 'mdbreact';
 import '../../stylesheets/form.css'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 
 
@@ -34,8 +34,10 @@ class Login extends Component {
             currentMember: data
           }
       })
+      console.log("this is before redirect", this.props.history);
+      this.props.history.push('/profile')
+      console.log("this is after redirect", this.props.history);
     })
-     this.props.history.push('/profile')
   }
 
   render(){
@@ -57,7 +59,7 @@ class Login extends Component {
                           </div>
                         </Row>
                         <Col md="12">
-                          <p className="font-small white-text d-flex justify-content-end">Dont have an account? <a href="#" className="green-text ml-1 font-weight-bold"> Register</a></p>
+                          <p className="font-small white-text d-flex justify-content-end">Dont have an account? <Link  to='/register' className="green-text ml-1 font-weight-bold"> Register</Link></p>
                         </Col>
                       </div>
                     </Card>

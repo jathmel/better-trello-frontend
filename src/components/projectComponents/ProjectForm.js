@@ -51,7 +51,10 @@ class ProjectForm extends Component  {
               </ModalBody>
               <ModalFooter>
                 <Button color="secondary" onClick={this.toggle}>Close</Button>{' '}
-                <Button color="primary" onClick={(event) => {this.handleSubmit(event)}}>Create</Button>
+                <Button color="primary" onClick={(event) => {
+                  this.handleSubmit(event),
+                  this.toggle
+                }}>Create Project</Button>
               </ModalFooter>
             </Modal>
           </Col>
