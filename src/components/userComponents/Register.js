@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createTeamMember } from '../../adapters/Adapters'
-import { userActions } from '../../actions'
+import { Container, Row, Col, Input, Button, Fa, Card, CardBody, ModalFooter } from 'mdbreact';
+import '../../stylesheets/form.css'
+import { withRouter, Link } from 'react-router-dom'
 
 class Register extends Component {
   state = {
@@ -34,56 +36,48 @@ class Register extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.setState({submitted: true})
-    const {user} = this.state
-    const { dispatch } = this.props
-    if (user.name && user.email && user.password) {
-      dispatch(userActions.register(user));
-    }
-
+    createTeamMember(this.state)
+    .then(data => {
+      console.log(data);
+      localStorage.setItem('token', data.id)
+      this.props.dispatch({
+      type: 'REGISTER',
+      payload: {
+        currentMember: data
+      }
+    })}
+  )
+  this.props.history.push('/profile')
   }
   render(){
-    return(
-    <div className="col-md-6 col-md-offset-3">
-      <h2>Register</h2>
-      <form onSubmit={(event) => this.handleSubmit(event)}>
-        <div className={'form-group' + (this.state.submitted && !this.state.user.name ? ' has-error' : '')}>
-            <label htmlFor="Name">Name</label>
-            <input type='text' name='name' onChange={(event) => this.handleChange(event) } value={this.state.name}/>
-            { this.state.submitted && !this.state.user.name &&
-              <div className="help-block">First Name is required</div>
-            }
-        </div>
-        <div className={'form-group' + (this.state.submitted && !this.state.user.email ? ' has-error' : '')}>
-          <label htmlFor="username">Email</label>
-          <input type='email' name='email' onChange={(event) => this.handleChange(event) } value={this.state.email}/>
-          {this.state.submitted && !this.state.user.email &&
-            <div className="help-block">Username is required</div>
-          }
-        </div>
-        <div className={'form-group' + (this.state.submitted && !this.state.user.password ? ' has-error' : '')}>
-          <label htmlFor="password">Password</label>
-          <input type='password' name='password' onChange={(event) => this.handleChange(event) } value={this.state.password}/>
-          {this.state.submitted && !this.state.user.password &&
-            <div className="help-block">Password is required</div>
-          }
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary">Register</button>
-            {this.props.registering &&
-              <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            }
-          </div>
-      </form>
-    </div>
+    return (
+      <Container>
+              <section className="form-dark">
+                <Row>
+                  <Col md="5">
+                    <Card className="card-image" style={{backgroundImage: 'url(https://mdbootstrap.com/img/Photos/Others/pricing-table7.jpg)', width: '28rem'}}>
+                      <div className="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                        <div className="text-center">
+                          <h3 className="green-text mb-5 mt-4 font-weight-bold"><strong>REGISTER</strong></h3>
+                        </div>
+                        <Input label="Your Name" group type="text" name='name' onChange={(event) => this.handleChange(event) } value={this.state.name} validate />
+                        <Input label="Your Email" group type="text" name='email' onChange={(event) => this.handleChange(event) } value={this.state.email} validate />
+                        <Input label="Your Password" group type="password" name='password' onChange={(event) => this.handleChange(event) } value={this.state.password} validate/>
+                        <Row className="d-flex align-items-center mb-4">
+                          <div className="text-center mb-3 col-md-12">
+                            <Button color="success" rounded type="button" className="btn-block z-depth-1" onClick={this.handleSubmit}>Register</Button>
+                          </div>
+                        </Row>
+                        <Col md="12">
+                          <p className="font-small white-text d-flex justify-content-end">Have an account? <Link to='/login' className="green-text ml-1 font-weight-bold"> Login</Link></p>
+                        </Col>
+                      </div>
+                    </Card>
+                  </Col>
+                </Row>
+              </section>
+            </Container>
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  const {registering} = state.Registration
-  return {
-    registering
-  }
-}
-export default connect(mapStateToProps)(Register)
+export default withRouter(connect()(Register))

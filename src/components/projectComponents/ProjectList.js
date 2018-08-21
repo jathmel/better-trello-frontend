@@ -16,14 +16,9 @@ class ProjectList extends Component {
       return <Project key={project.id} project={project}/>
     })
     return(
-      <div>
-      {this.props.selected ?
-        <TaskList/>
-        :
-        <div>{project}</div>
-      }
-      </div>
-
+        <div
+          className='project'>{project}
+        </div>
     )
   }
 }
@@ -31,7 +26,7 @@ class ProjectList extends Component {
 const mapStateToProps = (state) => {
   return {
     projects: state.projects,
-    selected: state.selected
+    projectSelected: state.projectSelected
   }
 }
 

@@ -1,17 +1,36 @@
 import React, { Component } from 'react'
+import { selectedTask } from '../../actions'
+import { addTaskForTeamMember } from '../../adapters/Adapters'
 import { connect } from 'react-redux'
+import { Button, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbreact'
 
 
-const Task = props => {
+  const Task = props => {
 
+    const handleClick = (event) => {
+      const user_id = localStorage.getItem('token')
+        console.log(props.task.team_member_project_id);
+        props.selectedTask(props.task)
+        addTaskForTeamMember(props.task.id, user_id)
+        // debugger
+      }
+        console.log(props.selectedTask);
+        return(
+          <Card>
+              <CardImage src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap" top hover overlay="white-slight"/>
+              <CardBody>
+                <CardTitle tag="h5">{props.task.title}</CardTitle>
+                <CardText>{props.task.description}</CardText>
+                <Button color="light-blue" size="md" onClick={(event) => handleClick(event)}>Add Task</Button>
+              </CardBody>
+            </Card>
+        )
 
-    console.log(props.task);
-    return(
-      <div>
-        <h2>{props.task.title}</h2>
-      </div>
-    )
+    }
+    const mapStateToProps = (state) => {
+      return {
+        selectedTask: state.selectedTask
+      }
+  }
 
-}
-
-export default (Task)
+  export default connect(mapStateToProps, { selectedTask })(Task)

@@ -1,8 +1,24 @@
 .App {
   /* text-align: center; */
+  display: grid;
+
+  /*
+  css grid
+  display: grid;
+  grid-template-columns: define size and how many eg 10vw auto 10vw;
+  grid-template-rows: define size and how many eg 10vh 80vh 10vh;
+  grid-template-area: define variable names to structure page eg 'topleft topmid topright' 'botleft botmid botright';
+
+  in component css
+  grid-area: topleft; 
+   */
+
+  /*
+  flexbox
   display: flex;
   justify-content: center;
   align-items: center;
+   */
 }
 
 .App-logo {
@@ -28,4 +44,8 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.navbar .scrolling-navbar{
+  padding-top: 0.05em !important;
+  padding-bottom: 0.05em !important;
 }

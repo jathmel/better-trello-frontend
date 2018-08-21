@@ -34,6 +34,15 @@ export const projectTasks = (tasks) => {
   }
 }
 
+export const selectedTask = (task) => {
+
+  return {
+    type: 'SELECTED_TASK',
+    payload: {
+      task
+    }
+  }
+}
 export const currentMember = () => {
   return (dispatch) => {getTeamMember().then(data => {
     debugger
