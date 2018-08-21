@@ -1,7 +1,9 @@
 .App {
   /* text-align: center; */
-  display: grid;
-
+  /* display: grid;
+  grid-template-columns: repeat(auto-fil, minmax(300px, 1fr));
+  grid-gap: 20px */
+}
   /*
   css grid
   display: grid;
@@ -10,7 +12,7 @@
   grid-template-area: define variable names to structure page eg 'topleft topmid topright' 'botleft botmid botright';
 
   in component css
-  grid-area: topleft; 
+  grid-area: topleft;
    */
 
   /*
@@ -19,7 +21,7 @@
   justify-content: center;
   align-items: center;
    */
-}
+/* } */
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
