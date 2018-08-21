@@ -3,7 +3,7 @@ import { allProjects } from '../../actions'
 import { connect } from 'react-redux'
 import Project from './Project'
 import TaskList from './TaskList'
-import '../../stylesheets/project.css'
+// import '../../stylesheets/project.css'
 
 class ProjectList extends Component {
   state
@@ -17,7 +17,9 @@ class ProjectList extends Component {
       return <Project key={project.id} project={project}/>
     })
     return(
-        <div className='project-list'>{project}</div>
+        <div className='project-list'>
+          <div className='project-container'>{project}</div>
+        </div>
     )
   }
 }

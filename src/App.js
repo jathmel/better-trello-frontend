@@ -4,6 +4,7 @@ import './App.css';
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect, withRouter} from 'react-router-dom'
 import { getCurrentMember } from './adapters/Adapters'
+import './stylesheets/project.css'
 
 import Register from './components/userComponents/Register'
 import Login from './components/userComponents/Login'
@@ -13,6 +14,7 @@ import ProjectForm from './components/projectComponents/ProjectForm'
 import TaskList from './components/projectComponents/TaskList'
 import TaskForm from './components/projectComponents/TaskForm'
 import NavBar from './components/NavBar.js'
+import ConversationList from './components/chat/ConversationsList'
 
 
 class App extends Component {
@@ -42,6 +44,7 @@ class App extends Component {
     return (
     <div className="App">
       { /*<NavBar/>*/}
+        <ConversationList/>
         <Switch>
           <Route exact path='/' render={ props => {
             return <Redirect to='/profile'/>
@@ -59,14 +62,14 @@ class App extends Component {
           <Route path='/projects' render={props => {
             this.isLoggedIn()
             return (<Fragment>
-            <ProjectForm/>
+            {/* <ProjectForm/>*/}
             <ProjectList/>
             </Fragment>)
           }}/>
           <Route path='/tasks' render={props => {
             // this.isLoggedIn()
             return (<Fragment>
-              <TaskForm/>
+              {/*<TaskForm/>*/}
               <TaskList/>
             </Fragment>)
           }}/>

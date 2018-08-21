@@ -5,6 +5,8 @@ import NewConversationForm  from './NewConversationForm';
 import MessagesArea  from './MessagesArea';
 import Cable from './Cable'
 
+
+
 class ConversationsList extends Component {
   state = {
     conversations:[],
@@ -44,7 +46,8 @@ class ConversationsList extends Component {
   render = () => {
     const {conversations, activeConversation } = this.state
     return(
-      <div className="converationsList">
+      // <div className='chatContainer'>
+      <div className="chatContainer">
       <ActionCable channel={{channel: 'ConversationChannel'}} onReceived={this.handleReceivedConversation}/>
       {this.state.conversations.length ? (
         <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage}/>
@@ -56,6 +59,7 @@ class ConversationsList extends Component {
         <MessagesArea conversation={findActiveConversation(conversations, activeConversation)}/>
       ): null}
       </div>
+      // </div>
     )
   }
 }

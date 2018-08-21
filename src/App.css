@@ -1,8 +1,10 @@
 .App {
-  /* text-align: center; */
-  /* display: grid;
-  grid-template-columns: repeat(auto-fil, minmax(300px, 1fr));
-  grid-gap: 20px */
+  display: grid;
+  grid-template-columns: 85vw 15vw;
+  grid-template-areas: "project chat";
+  /* repeat(auto-fill, minmax(300px, 1fr)); */
+  grid-gap: 5px;
+  margin-left: 10px;
 }
   /*
   css grid

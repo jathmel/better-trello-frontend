@@ -2,7 +2,7 @@ import React from 'react'
 import { selectedProject, projectTasks } from '../../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import '../../stylesheets/project.css'
+// import '../../stylesheets/project.css'
 import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbreact'
 
  class Project extends React.Component {
@@ -23,7 +23,7 @@ import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardT
    // console.log(props.project.name);
    render(){
    return (
-    <div className="scene scene--card">
+    <div className="scene">
         <div className={this.state.flipped ? 'card is-flipped' : 'card'} onClick={this.handleFlip}>
           <div className="card__face card__face--front" >front</div>
           <div className="card__face card__face--back">back</div>
