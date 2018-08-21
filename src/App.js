@@ -41,7 +41,7 @@ class App extends Component {
     console.log('render app', this.props.loggedIn);
     return (
     <div className="App">
-         <NavBar/>
+      { /*<NavBar/>*/}
         <Switch>
           <Route exact path='/' render={ props => {
             return <Redirect to='/profile'/>

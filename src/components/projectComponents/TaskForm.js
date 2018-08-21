@@ -33,7 +33,6 @@ class TaskForm extends React.Component  {
     createTask({title, category, description, priority})
     .then(data => {
       console.log(data)
-      debugger
       const task_id = data.id
       const project_id = this.props.selectedProject.id
       assignTaskToProject({task_id, project_id})

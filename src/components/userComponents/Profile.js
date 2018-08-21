@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom';
 import {getCurrentMember } from '../../adapters/Adapters'
+import ConversationsList from '../chat/ConversationsList'
 class Profile extends Component {
   componentDidMount() {
     const id = localStorage.getItem('token')
@@ -14,6 +15,7 @@ class Profile extends Component {
     return(
       <div>
       <h1>{this.props.currentMember.name}</h1>
+        <ConversationsList />
       </div>
     )
   }
@@ -23,6 +25,7 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
   return {
     currentMember: state.currentMember
+
   }
 }
 export default connect(mapStateToProps)(Profile)
