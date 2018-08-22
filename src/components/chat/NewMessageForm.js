@@ -6,12 +6,18 @@ class NewMessageForm extends Component {
     text: '',
     conversation_id: this.props.coversation_id
   }
-
   componentDidMount() {
-    this.setState({
-      conversation_id: this.props.conversation_id
-    })
+    console.log(this.props);
+    this.setState({conversation_id: this.props.conversation_id}, ()=>{console.log(this.state.conversation_id)})
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('props:',prevProps, 'prevstate:',prevState);
+    if (prevProps.conversation_id !== this.props.conversation_id){
+      this.setState({ conversation_id: this.props.conversation_id},()=>{console.log(this.state.conversation_id)})
+    }
+  }
+
 
   handleChange = event => {
     this.setState({ text: event.target.value})

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment  } from 'react';
+
 import { Container, Row, Col, Input, Button, Fa, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact';
 import { createProject } from '../../adapters/Adapters'
 
@@ -33,9 +34,9 @@ class ProjectForm extends Component  {
 
   render() {
     return(
-      <Container>
-        <Row>
-          <Col md="6">
+        // <Row>
+        //   <Col md="6">
+        <div id='create-project'>
             <Button color="info" onClick={this.toggle}>Create New Project</Button>
             <Modal isOpen={this.state.modal} toggle={this.toggle} className="cascading-modal">
               <div className="modal-header primary-color white-text">
@@ -57,9 +58,9 @@ class ProjectForm extends Component  {
                 }}>Create Project</Button>
               </ModalFooter>
             </Modal>
-          </Col>
-        </Row>
-      </Container>
+            </div>
+        //   </Col>
+        // </Row>
     );
   }
 };

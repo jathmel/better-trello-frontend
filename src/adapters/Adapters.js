@@ -1,13 +1,14 @@
 import { MEMBER_API_ROOT, PROJECT_API_ROOT, TASK_API_ROOT, JOIN_API_ROOT, HEADERS } from '../constants'
-const teamMemberBaseURL = 'http://localhost:3000/api/v1/team_members/'
-const projectBaseURL = 'http://localhost:3000/api/v1/projects'
+// const teamMemberBaseURL = 'http://localhost:3000/api/v1/team_members/'
+// const projectBaseURL = 'http://localhost:3000/api/v1/projects'
 
 export const getProjects = () => {
-  return fetch(projectBaseURL)
+  return fetch(PROJECT_API_ROOT)
   .then(response => response.json())
 }
 
 export const getTeamMember = (memObj) => {
+
   const options = {
     method: "POST",
     headers: HEADERS,
@@ -21,6 +22,7 @@ export const getCurrentMember = (id) => {
 }
 
 export const createTeamMember = (memObj) => {
+  console.log(memObj);
   const options = {
     method: 'POST',
     headers:HEADERS,

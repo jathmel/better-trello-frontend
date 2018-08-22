@@ -1,10 +1,24 @@
 .App {
   display: grid;
-  grid-template-columns: 85vw 15vw;
-  grid-template-areas: "project chat";
+  grid-template-columns: 75vw 20vw;
+  grid-template-areas: "nav nav" "project chat";
   /* repeat(auto-fill, minmax(300px, 1fr)); */
   grid-gap: 5px;
   margin-left: 10px;
+  margin-top: 5px;
+}
+
+
+.navbar {
+  background-color: purple;
+  display: flex;
+  grid-area: nav;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  /* position: absolute; */
+  top: 0;
+  left:0;
 }
   /*
   css grid

@@ -8,11 +8,26 @@
 }
 	/* flip the pane when hovered */
 
+.button {
+  height: 15px;
+  padding: 10px;
+  font-size: 15px;
+  line-height: 0;
+  position: absolute;
+  right: 115px;
+  bottom: 10px;
+
+}
+
+#create-project{
+  margin-top: 60px;
+}
 
 
   body { font-family: sans-serif; }
 
   .project-container {
+    margin-top: 5px;
     grid-area: project;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -23,6 +38,9 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     border: 1px solid #CCC;
+
+  }
+  h2 {
 
   }
 

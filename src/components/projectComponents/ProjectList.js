@@ -17,9 +17,9 @@ class ProjectList extends Component {
       return <Project key={project.id} project={project}/>
     })
     return(
-        <div className='project-list'>
+        // <div className='project-list'>
           <div className='project-container'>{project}</div>
-        </div>
+        // </div>
     )
   }
 }

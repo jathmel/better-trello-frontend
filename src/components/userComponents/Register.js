@@ -22,21 +22,22 @@ class Register extends Component {
       [event.target.name]: event.target.value
     }, () => {console.log('register state', this.state)})
   }
-
-  handleChange = event => {
-        const { name, value } = event.target;
-        const { user } = this.state;
-        this.setState({
-            user: {
-                ...user,
-                [name]: value
-            }
-        });
-    }
+  // 
+  // handleChange = event => {
+  //       const { name, value } = event.target;
+  //       const { user } = this.state;
+  //       this.setState({
+  //           user: {
+  //               ...user,
+  //               [name]: value
+  //           }
+  //       });
+  //   }
 
   handleSubmit = event => {
     event.preventDefault()
-    createTeamMember(this.state)
+    const {name, email, password} = this.state
+    createTeamMember({name, email, password})
     .then(data => {
       console.log(data);
       localStorage.setItem('token', data.id)

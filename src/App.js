@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Switch, Route, Redirect, withRouter} from 'react-router-dom'
 import { getCurrentMember } from './adapters/Adapters'
 import './stylesheets/project.css'
+import {Container} from 'mdbreact'
 
 import Register from './components/userComponents/Register'
 import Login from './components/userComponents/Login'
@@ -43,7 +44,7 @@ class App extends Component {
     console.log('render app', this.props.loggedIn);
     return (
     <div className="App">
-      { /*<NavBar/>*/}
+      <NavBar/>
         <ConversationList/>
         <Switch>
           <Route exact path='/' render={ props => {
@@ -62,14 +63,14 @@ class App extends Component {
           <Route path='/projects' render={props => {
             this.isLoggedIn()
             return (<Fragment>
-            {/* <ProjectForm/>*/}
             <ProjectList/>
+            <ProjectForm/>
             </Fragment>)
           }}/>
           <Route path='/tasks' render={props => {
             // this.isLoggedIn()
             return (<Fragment>
-              {/*<TaskForm/>*/}
+              <TaskForm/>
               <TaskList/>
             </Fragment>)
           }}/>

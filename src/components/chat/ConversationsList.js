@@ -20,8 +20,8 @@ class ConversationsList extends Component {
   };
 
   handleClick = id => {
-    console.log(id);
-    this.setState({ activeConversation: id })
+    console.log('handle click',id);
+    this.setState({ activeConversation: id }, ()=>{console.log('state in handle click',this.state.activeConversation);})
   }
 
   handleReceivedConversation = response => {
@@ -48,7 +48,7 @@ class ConversationsList extends Component {
     return(
       // <div className='chatContainer'>
       <div className="chatContainer">
-      <ActionCable channel={{channel: 'ConversationChannel'}} onReceived={this.handleReceivedConversation}/>
+      <ActionCable channel={{channel: 'ConversationsChannel'}} onReceived={this.handleReceivedConversation}/>
       {this.state.conversations.length ? (
         <Cable conversations={conversations} handleReceivedMessage={this.handleReceivedMessage}/>
       ) : null}

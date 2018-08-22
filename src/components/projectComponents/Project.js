@@ -3,11 +3,15 @@ import { selectedProject, projectTasks } from '../../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 // import '../../stylesheets/project.css'
-import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbreact'
+// import { FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardText, Fa} from 'mdbreact'
 
  class Project extends React.Component {
    state = {
      flipped: false
+   }
+
+   renderMember = () =>{
+     return this.props.project.team_members.map(member => <li>member.name</li> )
    }
 
    handleFlip = () => {
@@ -25,8 +29,21 @@ import { Button,FlippingCard, CardUp, Card, CardBody, CardImage,CardTitle, CardT
    return (
     <div className="scene">
         <div className={this.state.flipped ? 'card is-flipped' : 'card'} onClick={this.handleFlip}>
-          <div className="card__face card__face--front" >front</div>
-          <div className="card__face card__face--back">back</div>
+          <div className="card__face card__face--front" >
+            <div>
+              {this.props.project.name}
+            </div>
+              <div>
+                {this.props.project.description}
+              </div>
+              <button className='button' onClick={(e)=> this.handleClick(e)}>Tasks</button>
+          </div>
+          <div className="card__face card__face--back">
+          <h2>Team Members</h2>
+          <ul>
+          {this.renderMember()}
+          </ul>
+          </div>
         </div>
     </div>
   )}
